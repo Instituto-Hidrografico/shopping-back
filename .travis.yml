@@ -1,0 +1,11 @@
+sudo: false
+language: java
+jdk: jdk19
+install: true
+cache:
+  directories:
+    - $HOME/.m2
+notifications:
+  email: institutohidrografico@gmail.com
+before_install:
+  - chmod +x mvnw
