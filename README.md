@@ -1,4 +1,4 @@
-# Shopping
+# _Shopping_
 ![github](https://img.shields.io/github/stars/gadelhati/shopping?style=social "Github")
 ![java](https://img.shields.io/badge/java-19-2145E8 "Java")
 ![postgresql](https://img.shields.io/badge/postgresql-15.1.1-6495ED "PostgreSQL")
