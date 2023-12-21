@@ -126,6 +126,7 @@ These are the paths to services:
 
 ## Developers
 > [Gadelha TI](https://github.com/gadelhati)
+> [Lucas](https://github.com/lucassmartins)
 
 ## Licence
 > [MIT License](https://choosealicense.com/licenses/mit/)
