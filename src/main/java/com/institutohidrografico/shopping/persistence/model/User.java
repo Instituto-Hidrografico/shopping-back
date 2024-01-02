@@ -9,7 +9,7 @@ import org.hibernate.envers.Audited;
 
 import java.util.Collection;
 
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(name= "user_entity")
 public class User extends GenericEntity {
 
     private String username;
