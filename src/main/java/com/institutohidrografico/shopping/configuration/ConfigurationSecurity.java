@@ -1,8 +1,6 @@
 package com.institutohidrografico.shopping.configuration;
 
 import com.institutohidrografico.shopping.security.JWTAuthenticationFilter;
-import com.institutohidrografico.shopping.security.JWTAuthEntryPoint;
-import com.institutohidrografico.shopping.service.ServiceCustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,9 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration @EnableWebSecurity @EnableMethodSecurity @RequiredArgsConstructor
 public class ConfigurationSecurity {
-
-    private final JWTAuthEntryPoint authEntryPoint;
-    private final ServiceCustomUserDetails userDetailsService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
