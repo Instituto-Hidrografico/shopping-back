@@ -15,7 +15,6 @@ import java.util.UUID;
 public class ServiceFood implements ServiceInterface<DTOResponseFood, DTORequestFood> {
 
     private final RepositoryFood repositoryFood;
-//    private final RepositoryFoodPage repositoryFoodPage;
 
     @Override
     public DTOResponseFood create(DTORequestFood created){
