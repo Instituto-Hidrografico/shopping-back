@@ -3,14 +3,12 @@ package com.institutohidrografico.shopping.persistence.payload.request;
 import com.institutohidrografico.shopping.exception.annotation.*;
 import com.institutohidrografico.shopping.persistence.model.Role;
 import lombok.Getter;
-import lombok.Setter;
 
 import jakarta.validation.constraints.*;
 import java.util.Collection;
 import java.util.UUID;
 
-@Getter @Setter @UniqueUsername
-@UniqueEmail
+@Getter @UniqueUsername @UniqueEmail
 public class DTORequestUser {
 
     private UUID id;

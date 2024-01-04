@@ -2,9 +2,9 @@ package com.institutohidrografico.shopping.persistence.payload.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class DTORequestAuth {
 
     @NotNull(message = "{auth.username.not.null}") @NotBlank(message = "{auth.username.not.blank}")

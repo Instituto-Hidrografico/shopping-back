@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
@@ -24,9 +25,10 @@ public class ServiceUser implements ServiceInterface<DTOResponseUser, DTORequest
 
     @Override
     public DTOResponseUser create(DTORequestUser created){
-        created.setPassword(passwordEncoder.encode(created.getPassword()));
-        created.setRole(Collections.singletonList(repositoryRole.findByName("ROLE_USER")));
-        return MapStruct.MAPPER.toDTO(repositoryUser.save(MapStruct.MAPPER.toObject(created)));
+        User user = MapStruct.MAPPER.toObject(created);
+        user.setPassword(passwordEncoder.encode(created.getPassword()));
+        user.setRole(Collections.singletonList(repositoryRole.findByName("ROLE_USER")));
+        return MapStruct.MAPPER.toDTO(repositoryUser.save(user));
     }
     @Override
     public Page<DTOResponseUser> retrieve(Pageable pageable, String key, String value) {
@@ -47,9 +49,9 @@ public class ServiceUser implements ServiceInterface<DTOResponseUser, DTORequest
     }
     @Override
     public DTOResponseUser update(UUID id, DTORequestUser updated){
-        DTOResponseUser dtoResponseUser = MapStruct.MAPPER.toDTO(repositoryUser.findById(id).orElse(null));
-        updated.setPassword(dtoResponseUser.getPassword());
-        return MapStruct.MAPPER.toDTO(repositoryUser.save(MapStruct.MAPPER.toObject(updated)));
+        User user = MapStruct.MAPPER.toObject(updated);
+        user.setPassword(Objects.requireNonNull(repositoryUser.findById(updated.getId()).orElse(null)).getPassword());
+        return MapStruct.MAPPER.toDTO(repositoryUser.save(user));
     }
     @Override
     public DTOResponseUser delete(UUID id){
@@ -77,8 +79,7 @@ public class ServiceUser implements ServiceInterface<DTOResponseUser, DTORequest
 
     public DTOResponseUser changePassword(DTORequestUser updated){
         User user = repositoryUser.findById(updated.getId()).orElse(null);
-        assert user != null;
-        user.setPassword(passwordEncoder.encode(updated.getPassword()));
+        Objects.requireNonNull(user).setPassword(passwordEncoder.encode(updated.getPassword()));
         return MapStruct.MAPPER.toDTO(repositoryUser.save(user));
     }
 }
