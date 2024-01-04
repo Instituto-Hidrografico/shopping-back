@@ -18,7 +18,8 @@ public class DTORequestUser {
     private String username;
     @NotBlank(message = "{user.email.not.blank}") @Size(max = 50) @Email
     private String email;
-    @NotNull(message = "{user.password.not.null}") @NotBlank(message = "{user.password.not.blank}") @HasDigit
+    @NotNull(message = "{user.password.not.null}") @NotBlank(message = "{user.password.not.blank}")
+    @HasDigit
     @HasUpperCase
     @HasLowerCase
     @HasLength
