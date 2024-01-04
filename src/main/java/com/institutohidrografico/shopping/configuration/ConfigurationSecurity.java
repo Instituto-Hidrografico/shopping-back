@@ -32,6 +32,7 @@ public class ConfigurationSecurity {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/auth/ping").permitAll()
+                .requestMatchers(HttpMethod.GET, "/food").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
