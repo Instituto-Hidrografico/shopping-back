@@ -28,12 +28,8 @@ public @interface UniqueNameRole {
 
         @Override
         public boolean isValid(DTORequestRole value, ConstraintValidatorContext context) {
-            if (!isNull(value.getName()) && !serviceRole.existsByName(value.getName()) ||
-                    !isNull(value.getName()) && !isNull(value.getId()) && !serviceRole.existsByNameAndIdNot(value.getName(), value.getId()) ) {
-                return true;
-            } else {
-                return false;
-            }
+            return !isNull(value.getName()) && !serviceRole.existsByName(value.getName()) ||
+                    !isNull(value.getName()) && !isNull(value.getId()) && !serviceRole.existsByNameAndIdNot(value.getName(), value.getId());
         }
     }
 }

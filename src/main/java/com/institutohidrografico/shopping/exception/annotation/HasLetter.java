@@ -22,11 +22,7 @@ public @interface HasLetter {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
-            if (hasLetter(value)) {
-                return true;
-            } else {
-                return false;
-            }
+            return hasLetter(value);
         }
     }
 }

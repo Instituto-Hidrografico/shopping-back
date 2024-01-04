@@ -22,11 +22,7 @@ public @interface HasUpperCase {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
-            if (hasUpperCase(value)) {
-                return true;
-            } else {
-                return false;
-            }
+            return hasUpperCase(value);
         }
     }
 }

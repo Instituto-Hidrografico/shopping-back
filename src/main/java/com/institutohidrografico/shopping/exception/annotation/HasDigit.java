@@ -22,11 +22,7 @@ public @interface HasDigit {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
-            if (hasDigit(value)) {
-                return true;
-            } else {
-                return false;
-            }
+            return hasDigit(value);
         }
     }
 }

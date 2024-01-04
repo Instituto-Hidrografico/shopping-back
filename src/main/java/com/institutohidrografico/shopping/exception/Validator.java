@@ -3,11 +3,7 @@ package com.institutohidrografico.shopping.exception;
 public final class Validator {
 
     public static boolean isNull(Object value) {
-        if(value == null) {
-            return true;
-        } else {
-            return false;
-        }
+        return value == null;
     }
     public static boolean hasNumber(String value) {
         if (value == null) {

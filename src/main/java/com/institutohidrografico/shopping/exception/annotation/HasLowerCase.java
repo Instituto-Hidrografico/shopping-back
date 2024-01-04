@@ -22,11 +22,7 @@ public @interface HasLowerCase {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
-            if (hasLowerCase(value)) {
-                return true;
-            } else {
-                return false;
-            }
+            return hasLowerCase(value);
         }
     }
 }

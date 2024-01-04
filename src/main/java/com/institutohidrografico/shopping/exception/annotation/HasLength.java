@@ -22,11 +22,7 @@ public @interface HasLength {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
-            if (hasLength(8, value)) {
-                return true;
-            } else {
-                return false;
-            }
+            return hasLength(8, value);
         }
     }
 }

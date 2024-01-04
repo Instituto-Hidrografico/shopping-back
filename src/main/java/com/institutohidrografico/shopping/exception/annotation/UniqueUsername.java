@@ -31,12 +31,8 @@ public @interface UniqueUsername {
         }
         @Override
         public boolean isValid(DTORequestUser value, ConstraintValidatorContext context) {
-            if (!isNull(value.getUsername()) && !serviceUser.existsByName(value.getUsername()) ||
-                    !isNull(value.getUsername()) && !isNull(value.getId()) && !serviceUser.existsByNameAndIdNot(value.getUsername(), value.getId()) ) {
-                return true;
-            } else {
-                return false;
-            }
+            return !isNull(value.getUsername()) && !serviceUser.existsByName(value.getUsername()) ||
+                    !isNull(value.getUsername()) && !isNull(value.getId()) && !serviceUser.existsByNameAndIdNot(value.getUsername(), value.getId());
         }
     }
 }

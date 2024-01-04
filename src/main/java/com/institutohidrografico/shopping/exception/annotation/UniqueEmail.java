@@ -28,12 +28,8 @@ public @interface UniqueEmail {
 
         @Override
         public boolean isValid(DTORequestUser value, ConstraintValidatorContext context) {
-            if (!isNull(value.getEmail()) && !serviceUser.existsByEmail(value.getEmail()) ||
-                    !isNull(value.getEmail()) && !isNull(value.getId()) && !serviceUser.existsByEmailAndIdNot(value.getEmail(), value.getId()) ) {
-                return true;
-            } else {
-                return false;
-            }
+            return !isNull(value.getEmail()) && !serviceUser.existsByEmail(value.getEmail()) ||
+                    !isNull(value.getEmail()) && !isNull(value.getId()) && !serviceUser.existsByEmailAndIdNot(value.getEmail(), value.getId());
         }
     }
 }
