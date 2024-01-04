@@ -20,6 +20,7 @@ public class DTORequestUser {
     private String email;
     @NotNull(message = "{user.password.not.null}") @NotBlank(message = "{user.password.not.blank}")
     @HasDigit
+    @HasLetter
     @HasUpperCase
     @HasLowerCase
     @HasLength
