@@ -1,7 +1,7 @@
 package com.institutohidrografico.shopping.exception.annotation;
 
 import com.institutohidrografico.shopping.persistence.payload.request.DTORequestUser;
-import com.institutohidrografico.shopping.service.ServiceUserEntity;
+import com.institutohidrografico.shopping.service.ServiceUser;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -24,15 +24,15 @@ public @interface UniqueUsername {
     public class ValidatorUniqueUsername implements ConstraintValidator<UniqueUsername, DTORequestUser> {
 
         @Autowired
-        private ServiceUserEntity serviceUserEntity;
+        private ServiceUser serviceUser;
 
         @Override
         public void initialize(UniqueUsername constraintAnnotation) {
         }
         @Override
         public boolean isValid(DTORequestUser value, ConstraintValidatorContext context) {
-            if (!isNull(value.getUsername()) && !serviceUserEntity.existsByName(value.getUsername()) ||
-                    !isNull(value.getUsername()) && !isNull(value.getId()) && !serviceUserEntity.existsByNameAndIdNot(value.getUsername(), value.getId()) ) {
+            if (!isNull(value.getUsername()) && !serviceUser.existsByName(value.getUsername()) ||
+                    !isNull(value.getUsername()) && !isNull(value.getId()) && !serviceUser.existsByNameAndIdNot(value.getUsername(), value.getId()) ) {
                 return true;
             } else {
                 return false;

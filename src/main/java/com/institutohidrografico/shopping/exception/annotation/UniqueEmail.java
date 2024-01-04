@@ -1,7 +1,7 @@
 package com.institutohidrografico.shopping.exception.annotation;
 
 import com.institutohidrografico.shopping.persistence.payload.request.DTORequestUser;
-import com.institutohidrografico.shopping.service.ServiceUserEntity;
+import com.institutohidrografico.shopping.service.ServiceUser;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -24,12 +24,12 @@ public @interface UniqueEmail {
     public class ValidatorUniqueEmail implements ConstraintValidator<UniqueEmail, DTORequestUser> {
 
         @Autowired
-        private ServiceUserEntity serviceUserEntity;
+        private ServiceUser serviceUser;
 
         @Override
         public boolean isValid(DTORequestUser value, ConstraintValidatorContext context) {
-            if (!isNull(value.getEmail()) && !serviceUserEntity.existsByEmail(value.getEmail()) ||
-                    !isNull(value.getEmail()) && !isNull(value.getId()) && !serviceUserEntity.existsByEmailAndIdNot(value.getEmail(), value.getId()) ) {
+            if (!isNull(value.getEmail()) && !serviceUser.existsByEmail(value.getEmail()) ||
+                    !isNull(value.getEmail()) && !isNull(value.getId()) && !serviceUser.existsByEmailAndIdNot(value.getEmail(), value.getId()) ) {
                 return true;
             } else {
                 return false;

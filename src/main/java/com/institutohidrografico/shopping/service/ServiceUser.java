@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServiceUserEntity implements ServiceInterface<DTOResponseUser, DTORequestUser> {
+public class ServiceUser implements ServiceInterface<DTOResponseUser, DTORequestUser> {
 
     private final RepositoryUser repositoryUser;
     private final RepositoryRole repositoryRole;
