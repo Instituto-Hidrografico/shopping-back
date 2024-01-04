@@ -27,9 +27,6 @@ public @interface UniqueNameFood {
         private ServiceFood serviceFood;
 
         @Override
-        public void initialize(UniqueNameFood constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(DTORequestFood value, ConstraintValidatorContext context) {
             if (!isNull(value.getName()) && !serviceFood.existsByName(value.getName()) ||
                     !isNull(value.getName()) && !isNull(value.getId()) && !serviceFood.existsByNameAndIdNot(value.getName(), value.getId()) ) {

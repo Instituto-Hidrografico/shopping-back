@@ -21,9 +21,6 @@ public @interface HasLength {
     public class ValidatorHasLength implements ConstraintValidator<HasLength, String> {
 
         @Override
-        public void initialize(HasLength constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
             if (hasLength(8, value)) {
                 return true;

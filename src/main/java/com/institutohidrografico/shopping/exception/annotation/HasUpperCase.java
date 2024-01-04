@@ -21,9 +21,6 @@ public @interface HasUpperCase {
     public class ValidatorHasUpperCase implements ConstraintValidator<HasUpperCase, String> {
 
         @Override
-        public void initialize(HasUpperCase constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
             if (hasUpperCase(value)) {
                 return true;

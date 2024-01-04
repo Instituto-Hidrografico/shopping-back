@@ -21,9 +21,6 @@ public @interface HasLowerCase {
     public class ValidatorHasLowerCase implements ConstraintValidator<HasLowerCase, String> {
 
         @Override
-        public void initialize(HasLowerCase constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
             if (hasLowerCase(value)) {
                 return true;

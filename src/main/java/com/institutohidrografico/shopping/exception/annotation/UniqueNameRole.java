@@ -27,9 +27,6 @@ public @interface UniqueNameRole {
         private ServiceRole serviceRole;
 
         @Override
-        public void initialize(UniqueNameRole constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(DTORequestRole value, ConstraintValidatorContext context) {
             if (!isNull(value.getName()) && !serviceRole.existsByName(value.getName()) ||
                     !isNull(value.getName()) && !isNull(value.getId()) && !serviceRole.existsByNameAndIdNot(value.getName(), value.getId()) ) {

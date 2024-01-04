@@ -27,9 +27,6 @@ public @interface UniqueEmail {
         private ServiceUserEntity serviceUserEntity;
 
         @Override
-        public void initialize(UniqueEmail constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(DTORequestUser value, ConstraintValidatorContext context) {
             if (!isNull(value.getEmail()) && !serviceUserEntity.existsByEmail(value.getEmail()) ||
                     !isNull(value.getEmail()) && !isNull(value.getId()) && !serviceUserEntity.existsByEmailAndIdNot(value.getEmail(), value.getId()) ) {

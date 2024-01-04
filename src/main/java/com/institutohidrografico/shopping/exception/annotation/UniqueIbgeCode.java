@@ -27,9 +27,6 @@ public @interface UniqueIbgeCode {
         private ServiceFood serviceFood;
 
         @Override
-        public void initialize(UniqueIbgeCode constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(DTORequestFood value, ConstraintValidatorContext context) {
             if (!isNull(value.getName()) && !serviceFood.existsByIbgeCode(value.getName()) ||
                     !isNull(value.getName()) && !isNull(value.getId()) && !serviceFood.existsByIbgeCodeAndIdNot(value.getName(), value.getId()) ) {

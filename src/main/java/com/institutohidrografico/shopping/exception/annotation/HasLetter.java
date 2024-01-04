@@ -21,9 +21,6 @@ public @interface HasLetter {
     public class ValidatorHasLetter implements ConstraintValidator<HasLetter, String> {
 
         @Override
-        public void initialize(HasLetter constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
             if (hasLetter(value)) {
                 return true;

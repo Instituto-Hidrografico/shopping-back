@@ -21,9 +21,6 @@ public @interface HasDigit {
     public class ValidatorHasDigit implements ConstraintValidator<HasDigit, String> {
 
         @Override
-        public void initialize(HasDigit constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
             if (hasDigit(value)) {
                 return true;

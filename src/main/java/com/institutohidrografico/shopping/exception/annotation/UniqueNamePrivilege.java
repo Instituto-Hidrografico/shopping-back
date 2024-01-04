@@ -27,9 +27,6 @@ public @interface UniqueNamePrivilege {
         private ServicePrivilege servicePrivilege;
 
         @Override
-        public void initialize(UniqueNamePrivilege constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(DTORequestPrivilege value, ConstraintValidatorContext context) {
             if (!isNull(value.getName()) && !servicePrivilege.existsByName(value.getName()) ||
                     !isNull(value.getName()) && !isNull(value.getId()) && !servicePrivilege.existsByNameAndIdNot(value.getName(), value.getId()) ) {
