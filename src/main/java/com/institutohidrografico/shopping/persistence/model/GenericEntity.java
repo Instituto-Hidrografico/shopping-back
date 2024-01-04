@@ -18,7 +18,7 @@ public abstract class GenericEntity implements Serializable {
 
     @Id
     @GeneratedValue(generator = "UUID", strategy = GenerationType.AUTO)
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GenericGenerator(name = "UUID", type = org.hibernate.id.uuid.UuidGenerator.class)
     @Column(name = "id", unique = true, nullable = false)
     private UUID id;
     @CreationTimestamp @Column(updatable = false)
