@@ -27,9 +27,6 @@ public @interface UniqueUsername {
         private ServiceUser serviceUser;
 
         @Override
-        public void initialize(UniqueUsername constraintAnnotation) {
-        }
-        @Override
         public boolean isValid(DTORequestUser value, ConstraintValidatorContext context) {
             return !isNull(value.getUsername()) && !serviceUser.existsByName(value.getUsername()) ||
                     !isNull(value.getUsername()) && !isNull(value.getId()) && !serviceUser.existsByNameAndIdNot(value.getUsername(), value.getId());
