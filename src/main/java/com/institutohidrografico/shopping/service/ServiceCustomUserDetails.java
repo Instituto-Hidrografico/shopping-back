@@ -3,7 +3,6 @@ package com.institutohidrografico.shopping.service;
 import com.institutohidrografico.shopping.persistence.model.Privilege;
 import com.institutohidrografico.shopping.persistence.model.Role;
 import com.institutohidrografico.shopping.persistence.model.User;
-import com.institutohidrografico.shopping.persistence.repository.RepositoryRole;
 import com.institutohidrografico.shopping.persistence.repository.RepositoryUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
