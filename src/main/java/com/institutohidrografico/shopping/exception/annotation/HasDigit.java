@@ -18,7 +18,7 @@ public @interface HasDigit {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorHasDigit implements ConstraintValidator<HasDigit, String> {
+    class ValidatorHasDigit implements ConstraintValidator<HasDigit, String> {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {

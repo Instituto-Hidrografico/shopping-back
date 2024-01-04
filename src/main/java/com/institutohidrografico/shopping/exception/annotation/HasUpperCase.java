@@ -18,7 +18,7 @@ public @interface HasUpperCase {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorHasUpperCase implements ConstraintValidator<HasUpperCase, String> {
+    class ValidatorHasUpperCase implements ConstraintValidator<HasUpperCase, String> {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {

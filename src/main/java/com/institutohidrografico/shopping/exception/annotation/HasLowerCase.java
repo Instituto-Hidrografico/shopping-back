@@ -18,7 +18,7 @@ public @interface HasLowerCase {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorHasLowerCase implements ConstraintValidator<HasLowerCase, String> {
+    class ValidatorHasLowerCase implements ConstraintValidator<HasLowerCase, String> {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {

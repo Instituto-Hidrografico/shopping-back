@@ -21,7 +21,7 @@ public @interface UniqueEmail {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorUniqueEmail implements ConstraintValidator<UniqueEmail, DTORequestUser> {
+    class ValidatorUniqueEmail implements ConstraintValidator<UniqueEmail, DTORequestUser> {
 
         @Autowired
         private ServiceUser serviceUser;

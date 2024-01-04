@@ -21,7 +21,7 @@ public @interface UniqueIbgeCode {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorUniqueIbgeCode implements ConstraintValidator<UniqueIbgeCode, DTORequestFood> {
+    class ValidatorUniqueIbgeCode implements ConstraintValidator<UniqueIbgeCode, DTORequestFood> {
 
         @Autowired
         private ServiceFood serviceFood;

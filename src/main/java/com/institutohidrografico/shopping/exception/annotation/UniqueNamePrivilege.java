@@ -21,7 +21,7 @@ public @interface UniqueNamePrivilege {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorUniqueNamePrivilege implements ConstraintValidator<UniqueNamePrivilege, DTORequestPrivilege> {
+    class ValidatorUniqueNamePrivilege implements ConstraintValidator<UniqueNamePrivilege, DTORequestPrivilege> {
 
         @Autowired
         private ServicePrivilege servicePrivilege;

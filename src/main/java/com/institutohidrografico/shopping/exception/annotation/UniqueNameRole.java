@@ -21,7 +21,7 @@ public @interface UniqueNameRole {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorUniqueNameRole implements ConstraintValidator<UniqueNameRole, DTORequestRole> {
+    class ValidatorUniqueNameRole implements ConstraintValidator<UniqueNameRole, DTORequestRole> {
 
         @Autowired
         private ServiceRole serviceRole;

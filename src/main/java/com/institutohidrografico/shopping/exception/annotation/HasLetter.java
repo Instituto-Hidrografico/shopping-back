@@ -18,7 +18,7 @@ public @interface HasLetter {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorHasLetter implements ConstraintValidator<HasLetter, String> {
+    class ValidatorHasLetter implements ConstraintValidator<HasLetter, String> {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {

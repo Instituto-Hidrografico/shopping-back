@@ -21,7 +21,7 @@ public @interface UniqueNameFood {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorUniqueNameFood implements ConstraintValidator<UniqueNameFood, DTORequestFood> {
+    class ValidatorUniqueNameFood implements ConstraintValidator<UniqueNameFood, DTORequestFood> {
 
         @Autowired
         private ServiceFood serviceFood;

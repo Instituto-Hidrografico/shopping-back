@@ -21,7 +21,7 @@ public @interface UniqueUsername {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorUniqueUsername implements ConstraintValidator<UniqueUsername, DTORequestUser> {
+    class ValidatorUniqueUsername implements ConstraintValidator<UniqueUsername, DTORequestUser> {
 
         @Autowired
         private ServiceUser serviceUser;

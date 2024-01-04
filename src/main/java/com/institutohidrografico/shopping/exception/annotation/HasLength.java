@@ -18,7 +18,7 @@ public @interface HasLength {
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    public class ValidatorHasLength implements ConstraintValidator<HasLength, String> {
+    class ValidatorHasLength implements ConstraintValidator<HasLength, String> {
 
         @Override
         public boolean isValid(String value, ConstraintValidatorContext context) {
