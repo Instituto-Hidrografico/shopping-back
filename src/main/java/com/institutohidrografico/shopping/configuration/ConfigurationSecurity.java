@@ -28,7 +28,9 @@ public class ConfigurationSecurity {
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(Customizer.withDefaults())
                 .sessionManagement((session) -> session .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
+//                .expressionHandler(webSecurityExpressionHandler())
+                .authorizeHttpRequests((auth) -> auth
+//                        .expressionHandler(webSecurityExpressionHandler())
                     .requestMatchers(HttpMethod.GET, "/auth/ping").permitAll()
                     .requestMatchers(HttpMethod.GET, "/food").permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()

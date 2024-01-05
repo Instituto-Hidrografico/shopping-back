@@ -27,7 +27,7 @@ public class ServiceUser implements ServiceInterface<DTOResponseUser, DTORequest
     public DTOResponseUser create(DTORequestUser created){
         User user = MapStruct.MAPPER.toObject(created);
         user.setPassword(passwordEncoder.encode(created.getPassword()));
-        user.setRole(Collections.singletonList(repositoryRole.findByName("ROLE_USER")));
+        user.setRoles(Collections.singletonList(repositoryRole.findByName("ROLE_USER")));
         return MapStruct.MAPPER.toDTO(repositoryUser.save(user));
     }
     @Override

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -48,7 +49,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         user.setUsername("Test");
         user.setPassword(passwordEncoder.encode("test"));
         user.setEmail("test@test.com");
-        user.setRole(Arrays.asList(adminRole));
+        user.setRoles(Collections.singletonList(adminRole));
         user.setActive(true);
         repositoryUser.save(user);
         alreadySetup = true;
@@ -69,7 +70,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         if (role == null) {
             role = new Role();
             role.setName(name);
-//            role.setPrivileges((Set<Privilege>) privileges);
+            role.setPrivileges(privileges);
             repositoryRole.save(role);
         }
         return role;
