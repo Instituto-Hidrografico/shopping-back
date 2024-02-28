@@ -66,6 +66,12 @@
 			<version>42.7.1</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.postgis/postgis-jdbc -->
+		<dependency>
+			<groupId>net.postgis</groupId>
+			<artifactId>postgis-jdbc</artifactId>
+			<version>2023.1.0</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
