@@ -35,7 +35,6 @@ CRUD service from a shopping table.
 - [x] auditAware with UserEntity, to add user in GenericEntity
 - [x] @PostFilter(hasPermission('')), hasAuthority('Admin')
 #### in concept
-- [ ] add data Point of PostGis
 - [ ] set up Role Hierarchy
 - [ ] service to provide color palete
 - [ ] improve refresh token
