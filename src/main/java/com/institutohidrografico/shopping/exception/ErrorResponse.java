@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,9 +28,9 @@ public class ErrorResponse {
         }
         errors.add(new ErrorObject(field, message));
     }
-    public ErrorResponse(HttpStatus httpStatus, String stackTrace, String description) {
+    public ErrorResponse(HttpStatusCode httpStatusCode, String stackTrace, String description) {
         this.timestamp = new Date();
-        this.statusCode = httpStatus.value();
+        this.statusCode = httpStatusCode.value();
         this.stackTrace = stackTrace;
         this.description = description;
     }
