@@ -21,7 +21,7 @@ public class ControllerCompositeUnit {
 
     private final ServiceCompositeUnit serviceCompositeUnit;
 
-    @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PostMapping("") @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseCompositeUnit> create(@RequestBody @Valid DTORequestCompositeUnit created){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/composite_unit").toUriString());
         return ResponseEntity.created(uri).body(serviceCompositeUnit.create(created));
@@ -39,15 +39,15 @@ public class ControllerCompositeUnit {
     public ResponseEntity<Page<DTOResponseCompositeUnit>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceCompositeUnit.retrieve(pageable, key, value));
     }
-    @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PutMapping("") @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseCompositeUnit> update(@RequestBody @Valid DTORequestCompositeUnit updated){
         return ResponseEntity.accepted().body(serviceCompositeUnit.update(new CompositePK(updated.getName(), updated.getNumber()), updated));
     }
-    @DeleteMapping("/{name}/{number}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @DeleteMapping("/{name}/{number}") @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseCompositeUnit> delete(@PathVariable("name") String name, @PathVariable("number") int number){
         return ResponseEntity.accepted().body(serviceCompositeUnit.delete(new CompositePK(name, number)));
     }
-    @DeleteMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
+    @DeleteMapping("") @PreAuthorize("hasAnyRole('8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             serviceCompositeUnit.delete();

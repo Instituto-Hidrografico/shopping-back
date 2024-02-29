@@ -24,11 +24,6 @@ public class ServiceCustomUserDetails implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = repositoryUser.findByUsername(username).orElse(null);
-//        if (user == null) {
-//            return new org.springframework.security.core.userdetails.User(
-//                    " ", " ", true, true, true, true,
-//                    getAuthorities(Collections.singletonList(repositoryRole.findByName("ROLE_USER"))));
-//        }
         return new org.springframework.security.core.userdetails.User(Objects.requireNonNull(user).getUsername(), user.getPassword(), getAuthorities(user.getRoles()));
     }
     private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
@@ -38,7 +33,7 @@ public class ServiceCustomUserDetails implements UserDetailsService {
         List<String> privileges = new ArrayList<>();
         List<Privilege> collection = new ArrayList<>();
         for (Role role : roles) {
-            privileges.add(role.getName());
+            privileges.add(role.getId().toString());
             collection.addAll(role.getPrivileges());
         }
         for (Privilege item : collection) {

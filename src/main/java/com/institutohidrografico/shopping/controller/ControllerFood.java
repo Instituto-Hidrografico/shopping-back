@@ -21,7 +21,7 @@ public class ControllerFood implements ControllerInterface<DTOResponseFood, DTOR
 
     private final ServiceFood serviceFood;
 
-    @PostMapping("") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PostMapping("") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseFood> create(@RequestBody @Valid DTORequestFood created){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/food").toUriString());
         return ResponseEntity.created(uri).body(serviceFood.create(created));
@@ -30,15 +30,15 @@ public class ControllerFood implements ControllerInterface<DTOResponseFood, DTOR
     public ResponseEntity<Page<DTOResponseFood>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceFood.retrieve(pageable, key, value));
     }
-    @PutMapping("") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PutMapping("") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseFood> update(@RequestBody @Valid DTORequestFood updated){
         return ResponseEntity.accepted().body(serviceFood.update(updated.getId(), updated));
     }
-    @DeleteMapping("/{id}") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @DeleteMapping("/{id}") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseFood> delete(@PathVariable("id") UUID id){
         return ResponseEntity.accepted().body(serviceFood.delete(id));
     }
-    @DeleteMapping("") @Override @PreAuthorize("hasAnyRole('ADMIN')")
+    @DeleteMapping("") @Override @PreAuthorize("hasAnyRole('8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             serviceFood.delete();

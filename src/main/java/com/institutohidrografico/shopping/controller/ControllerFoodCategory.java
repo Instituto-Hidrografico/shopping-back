@@ -21,7 +21,7 @@ public class ControllerFoodCategory implements ControllerInterface<DTOResponseFo
 
     private final ServiceFoodCategory serviceFoodCategory;
 
-    @PostMapping("") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PostMapping("") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseFoodCategory> create(@RequestBody @Valid DTORequestFoodCategory created){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/food_category").toUriString());
         return ResponseEntity.created(uri).body(serviceFoodCategory.create(created));
@@ -30,15 +30,15 @@ public class ControllerFoodCategory implements ControllerInterface<DTOResponseFo
     public ResponseEntity<Page<DTOResponseFoodCategory>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceFoodCategory.retrieve(pageable, key, value));
     }
-    @PutMapping("") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PutMapping("") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseFoodCategory> update(@RequestBody @Valid DTORequestFoodCategory updated){
         return ResponseEntity.accepted().body(serviceFoodCategory.update(updated.getId(), updated));
     }
-    @DeleteMapping("/{id}") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @DeleteMapping("/{id}") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseFoodCategory> delete(@PathVariable("id") UUID id){
         return ResponseEntity.accepted().body(serviceFoodCategory.delete(id));
     }
-    @DeleteMapping("") @Override @PreAuthorize("hasAnyRole('ADMIN')")
+    @DeleteMapping("") @Override @PreAuthorize("hasAnyRole('8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             serviceFoodCategory.delete();

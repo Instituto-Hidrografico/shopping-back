@@ -21,24 +21,24 @@ public class ControllerCountry implements ControllerInterface<DTOResponseCountry
 
     private final ServiceCountry serviceCountry;
 
-    @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PostMapping("") @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseCountry> create(@RequestBody @Valid DTORequestCountry created){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/country").toUriString());
         return ResponseEntity.created(uri).body(serviceCountry.create(created));
     }
-    @GetMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
+    @GetMapping("") @PreAuthorize("hasAnyRole('USER', '52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<Page<DTOResponseCountry>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceCountry.retrieve(pageable, key, value));
     }
-    @PutMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PutMapping("") @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseCountry> update(@RequestBody @Valid DTORequestCountry updated){
         return ResponseEntity.accepted().body(serviceCountry.update(updated.getId(), updated));
     }
-    @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseCountry> delete(@PathVariable UUID id){
         return ResponseEntity.accepted().body(serviceCountry.delete(id));
     }
-    @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @DeleteMapping("") @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             serviceCountry.delete();

@@ -21,24 +21,24 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
 
     private final ServiceUser serviceUser;
 
-    @PostMapping("") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PostMapping("") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseUser> create(@RequestBody @Valid DTORequestUser created){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user").toUriString());
         return ResponseEntity.created(uri).body(serviceUser.create(created));
     }
-    @GetMapping("") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @GetMapping("") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<Page<DTOResponseUser>> retrieve(@RequestParam(name = "key", defaultValue = "", required = false) String key, @RequestParam(name="value", defaultValue = "", required = false) String value, Pageable pageable){
         return ResponseEntity.ok().body(serviceUser.retrieve(pageable, key, value));
     }
-    @PutMapping("") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @PutMapping("") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseUser> update(@RequestBody @Valid DTORequestUser updated){
         return ResponseEntity.accepted().body(serviceUser.update(updated.getId(), updated));
     }
-    @DeleteMapping("/{id}") @Override @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
+    @DeleteMapping("/{id}") @Override @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<DTOResponseUser> delete(@PathVariable("id") UUID id){
         return ResponseEntity.accepted().body(serviceUser.delete(id));
     }
-    @DeleteMapping("") @Override @PreAuthorize("hasAnyRole('ADMIN')")
+    @DeleteMapping("") @Override @PreAuthorize("hasAnyRole('8652ec73-0a53-433c-93be-420f1d90c681')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             serviceUser.delete();
