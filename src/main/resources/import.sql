@@ -2019,9 +2019,9 @@ INSERT INTO shopping.food_category (created_at, updated_at, id, name) VALUES (NO
 --INSERT INTO shopping.privilege(created_at, updated_at, id, name) VALUES(NOW(), NOW(), '3f2146a9-5d43-448e-a1eb-455766d3a14a', 'WRITE_PRIVILEGE') ON CONFLICT DO NOTHING;
 
 -- POPULING role
-INSERT INTO shopping.role(created_at, updated_at, id, name) VALUES(NOW(), NOW(), '7c12004d-e843-4e00-be40-01845ad75834', 'ROLE_USER') ON CONFLICT DO NOTHING;
-INSERT INTO shopping.role(created_at, updated_at, id, name) VALUES(NOW(), NOW(), '52c57a80-4e3b-4a41-a864-58d0cea25b14', 'ROLE_MODERATOR') ON CONFLICT DO NOTHING;
-INSERT INTO shopping.role(created_at, updated_at, id, name) VALUES(NOW(), NOW(), '8652ec73-0a53-433c-93be-420f1d90c681', 'ROLE_ADMIN') ON CONFLICT DO NOTHING;
+INSERT INTO shopping.role(created_at, updated_at, id, name) VALUES(NOW(), NOW(), '7c12004d-e843-4e00-be40-01845ad75834', 'USER') ON CONFLICT DO NOTHING;
+INSERT INTO shopping.role(created_at, updated_at, id, name) VALUES(NOW(), NOW(), '52c57a80-4e3b-4a41-a864-58d0cea25b14', 'MODERATOR') ON CONFLICT DO NOTHING;
+INSERT INTO shopping.role(created_at, updated_at, id, name) VALUES(NOW(), NOW(), '8652ec73-0a53-433c-93be-420f1d90c681', 'ADMIN') ON CONFLICT DO NOTHING;
 
 -- POPULING role_privilege
 --INSERT INTO shopping.role_privilege(role_id, privilege_id) VALUES ('7c12004d-e843-4e00-be40-01845ad75834', '82beb7a1-621c-4b9a-83eb-3ca196ed4345') ON CONFLICT DO NOTHING;
