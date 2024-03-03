@@ -31,14 +31,13 @@ CRUD service from a shopping table.
 
 ### Roadmap
 #### in development
-- [x] auditAware with UserEntity, to add user in GenericEntity
 - [x] @PostFilter(hasPermission('')), hasAuthority('Admin')
-#### in concept
 - [ ] set up Role Hierarchy
+#### in concept
 - [ ] service to provide color palete
+- [ ] add Internationalization to ValidationMessages.properties
 - [ ] improve refresh token
 - [ ] change application.properties to [dev using h2, and prod using postgres]
-- [ ] add Internationalization to ValidationMessages.properties
 
 ## Summary
 * [How to work with this project](#how-to-work-with-this-project)
