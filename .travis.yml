@@ -1,6 +1,6 @@
 sudo: false
 language: java
-jdk: jdk19
+jdk: openjdk8
 install: true
 cache:
   directories:
