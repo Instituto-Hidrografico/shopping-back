@@ -31,7 +31,6 @@ CRUD service from a shopping table.
 
 ### Roadmap
 #### in development
-- [x] @PostFilter(hasPermission('')), hasAuthority('Admin')
 - [ ] set up Role Hierarchy
 #### in concept
 - [ ] service to provide color palete
