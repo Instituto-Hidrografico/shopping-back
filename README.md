@@ -31,7 +31,6 @@ CRUD service from a shopping table.
 
 ### Roadmap
 #### in development
-- [x] travis
 - [x] auditAware with UserEntity, to add user in GenericEntity
 - [x] @PostFilter(hasPermission('')), hasAuthority('Admin')
 #### in concept
@@ -40,7 +39,6 @@ CRUD service from a shopping table.
 - [ ] improve refresh token
 - [ ] change application.properties to [dev using h2, and prod using postgres]
 - [ ] add Internationalization to ValidationMessages.properties
-- [ ] swagger something is not showing (Whitelabel Error Page)
 
 ## Summary
 * [How to work with this project](#how-to-work-with-this-project)
