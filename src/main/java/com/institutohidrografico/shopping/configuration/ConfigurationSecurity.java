@@ -31,7 +31,7 @@ public class ConfigurationSecurity {
                 .exceptionHandling(Customizer.withDefaults())
                 .sessionManagement((session) -> session .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((auth) -> auth
-                    .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/v2/api-docs/**", "/swagger-resources/**").permitAll()
+                    .requestMatchers("/api/v1/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/shopping/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/auth/ping").permitAll()
                     .requestMatchers(HttpMethod.GET, "/food").permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
@@ -41,7 +41,7 @@ public class ConfigurationSecurity {
     }
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/swagger-ui/**", "/v3/api-docs/**");
+        return (web) -> web.ignoring().requestMatchers("/api/v1/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/shopping/**");
     }
     @Bean
     public GrantedAuthorityDefaults grantedAuthorityDefaults() {
