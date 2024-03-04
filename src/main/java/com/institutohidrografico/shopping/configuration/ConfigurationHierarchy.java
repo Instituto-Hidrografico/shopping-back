@@ -11,10 +11,9 @@ public class ConfigurationHierarchy {
     @Bean
     public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        String hierarchy = "ADMIN > MODERATOR > USER > " +
-                "ADMIN > REVIEWER > VERIFIER > OPERATOR" +
-                "ADMIN > MODERATOR > VIEWER";
-        roleHierarchy.setHierarchy(hierarchy);
+        roleHierarchy.setHierarchy("ADMIN > MODERATOR > USER");
+        roleHierarchy.setHierarchy("ADMIN > REVIEWER > VERIFIER > OPERATOR");
+        roleHierarchy.setHierarchy("ADMIN > MODERATOR > VIEWER");
         return roleHierarchy;
     }
     @Bean
