@@ -20,7 +20,7 @@ public class ControllerState {
 
     private final ServiceState serviceState;
 
-    @PostMapping("") @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14', '8652ec73-0a53-433c-93be-420f1d90c681')")
+    @PostMapping("") @PreAuthorize("hasAnyRole('52c57a80-4e3b-4a41-a864-58d0cea25b14')")
     public ResponseEntity<DTOResponseState> create(@RequestBody @Valid DTORequestState created){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/state").toUriString());
         return ResponseEntity.created(uri).body(serviceState.create(created));
