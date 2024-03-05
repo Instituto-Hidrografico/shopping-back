@@ -8,7 +8,7 @@ import org.hibernate.envers.Audited;
 
 import jakarta.persistence.*;
 
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"})) @EqualsAndHashCode(callSuper = false)
 public class Country extends GenericEntity {
 
     private String name;
