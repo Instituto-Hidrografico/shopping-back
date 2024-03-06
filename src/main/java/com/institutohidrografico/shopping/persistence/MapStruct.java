@@ -15,6 +15,7 @@ public interface MapStruct {
     DTOResponseFoodCategory toDTO(FoodCategory foodCategory);
     DTOResponseUser toDTO(User user);
     DTOResponseRole toDTO(Role role);
+    DTOResponseLocation toDTO(Location location);
     DTOResponsePrivilege toDTO(Privilege privilege);
     DTOResponseCompositeUnit toDTO(CompositeUnit compositeUnit);
     DTOResponseState toDTO(State state);
@@ -25,6 +26,7 @@ public interface MapStruct {
     FoodCategory toObject(DTORequestFoodCategory dtoRequestFoodCategory);
     User toObject(DTORequestUser dtoRequestUser);
     Role toObject(DTORequestRole dtoRequestRole);
+    Location toObject(DTORequestLocation dtoRequestLocation);
     Privilege toObject(DTORequestPrivilege dtoRequestPrivilege);
     CompositeUnit toObject(DTORequestCompositeUnit dtoRequestCompositeUnit);
     State toObject(DTORequestState dtoRequestState);

@@ -6,11 +6,8 @@ import lombok.Data;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import net.postgis.jdbc.geometry.MultiPolygon;
-import net.postgis.jdbc.geometry.Point;
-import net.postgis.jdbc.geometry.Polygon;
 import org.hibernate.envers.Audited;
-import net.postgis.jdbc.geometry.*;
+import org.locationtech.jts.geom.*;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = true)
 public class Location extends GenericEntity {
