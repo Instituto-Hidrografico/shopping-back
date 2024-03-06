@@ -28,6 +28,7 @@ CRUD service from a shopping table.
 
 ### Roadmap
 #### in development
+- [x] AuditorAware, LastModifiedBy on update
 - [ ] add food purchase flow
 - [ ] change application.properties to [dev using h2, and prod using postgres]
 #### in concept
