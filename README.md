@@ -34,8 +34,8 @@ CRUD service from a shopping table.
 - [ ] add food purchase flow
 - [ ] change application.properties to [dev using h2, and prod using postgres]
 #### in concept
-- [ ] service to provide color palete
 - [ ] add Internationalization to ValidationMessages.properties
+- [ ] service to provide color palete
 - [ ] improve refresh token
 
 ## Summary
