@@ -1,5 +1,5 @@
 # _Shopping_
-![github](https://img.shields.io/github/stars/gadelhati/shopping?style=social "Github")
+![github](https://img.shields.io/github/stars/Instituto-Hidrografico/shopping-back "Github")
 ![java](https://img.shields.io/badge/java-19-2145E8 "Java")
 ![postgresql](https://img.shields.io/badge/postgresql-15.1.1-6495ED "PostgreSQL")
 ![springboot](https://img.shields.io/badge/springboot-3.0.1-53D05D "Spring Boot")
@@ -51,7 +51,7 @@ CRUD service from a shopping table.
 * [Licence](#licence)
 
 ## Example
-> [example](https://github.com/teddysmithdev/pokemon-review-springboot)
+> [example](https://github.com/Instituto-Hidrografico/shopping-back)
 
 ## How to work with this project
 Type in intellij terminal tab
@@ -106,12 +106,12 @@ service tomcat start
 
 ## Features
 These are the paths to services:
-- [x] [CREATE](http://localhost:3119/food) - path to item creation;
-- [x] [RETRIEVE](http://localhost:3119/food/id) - path to retrieve of an item by id;
-- [x] [RETRIEVE](http://localhost:3119/food/search) - path to retrieve of an item by search or all items without source;
-- [x] [UPDATE](http://localhost:3119/food/id) - path to update an item;
-- [x] [DELETE](http://localhost:3119/food/id) - path to delete an item;
-- [x] [DELETE_ALL](http://localhost:3119/food) - path to delete all items;
+- [x] [CREATE](http://localhost:3121/shopping/food) - path to item creation;
+- [x] [RETRIEVE](http://localhost:3121/shopping/food/id) - path to retrieve of an item by id;
+- [x] [RETRIEVE](http://localhost:3121/shopping/food/search) - path to retrieve of an item by search or all items without source;
+- [x] [UPDATE](http://localhost:3121/shopping/food/id) - path to update an item;
+- [x] [DELETE](http://localhost:3121/shopping/food/id) - path to delete an item;
+- [x] [DELETE_ALL](http://localhost:3121/shopping/food) - path to delete all items;
 
 ## HTTP Status code list
 > [HHTP Status Code](https://httpstatuses.com/)
