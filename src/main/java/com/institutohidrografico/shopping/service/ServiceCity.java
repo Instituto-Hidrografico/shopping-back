@@ -22,15 +22,6 @@ public class ServiceCity {
         return MapStruct.MAPPER.toDTO(repositoryCity.save(MapStruct.MAPPER.toObject(created)));
     }
     public Page<DTOResponseCity> retrieve(Pageable pageable, String value){
-        ExampleMatcher exampleMatcher = matching()
-                .withMatcher("a", startsWith().ignoreCase())
-//                .withMatcher("a", endsWith().ignoreCase())
-//                .withIncludeNullValues()
-//                .withIgnorePaths("role")
-                .withStringMatcher(ExampleMatcher.StringMatcher.ENDING);
-        Example<City> example = Example.of(new City(), exampleMatcher);
-        System.out.println(repositoryCity.findAll(example));
-
         String value2 = (pageable.getSort().stream().findFirst().get() == null ? "id" : pageable.getSort().stream().findFirst().get().getProperty());
         switch (value2) {
             case "id" -> {
