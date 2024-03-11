@@ -33,7 +33,7 @@ public class ServiceCity {
             Example<City> example = Example.of(object, exampleMatcher);
             return repositoryCity.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return null;
+            return repositoryCity.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         }
     }
     public DTOResponseCity update(long id, DTORequestCity updated){

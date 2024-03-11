@@ -34,7 +34,7 @@ public class ServiceState {
             Example<State> example = Example.of(object, exampleMatcher);
             return repositoryState.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return null;
+            return repositoryState.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         }
     }
     public DTOResponseState update(long id, DTORequestState updated){

@@ -46,7 +46,7 @@ public class ServiceUser implements ServiceInterface<DTOResponseUser, DTORequest
             Example<User> example = Example.of(object, exampleMatcher);
             return repositoryUser.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return null;
+            return repositoryUser.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         }
     }
     @Override

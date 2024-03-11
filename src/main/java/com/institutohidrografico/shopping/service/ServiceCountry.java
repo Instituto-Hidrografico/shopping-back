@@ -35,7 +35,7 @@ public class ServiceCountry implements ServiceInterface<DTOResponseCountry, DTOR
             Example<Country> example = Example.of(object, exampleMatcher);
             return repositoryCountry.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return null;
+            return repositoryCountry.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         }
     }
     public DTOResponseCountry update(UUID id, DTORequestCountry updated){

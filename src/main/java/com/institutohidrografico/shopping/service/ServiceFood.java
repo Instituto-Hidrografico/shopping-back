@@ -37,7 +37,7 @@ public class ServiceFood implements ServiceInterface<DTOResponseFood, DTORequest
             Example<Food> example = Example.of(food, exampleMatcher);
             return repositoryFood.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return null;
+            return repositoryFood.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         }
     }
     @Override

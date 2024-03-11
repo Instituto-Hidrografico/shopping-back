@@ -37,7 +37,7 @@ public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequest
             Example<Role> example = Example.of(object, exampleMatcher);
             return repositoryRole.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return null;
+            return repositoryRole.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         }
     }
     @Override

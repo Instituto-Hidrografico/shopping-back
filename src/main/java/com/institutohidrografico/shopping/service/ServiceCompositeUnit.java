@@ -35,7 +35,7 @@ public class ServiceCompositeUnit {
             Example<CompositeUnit> example = Example.of(object, exampleMatcher);
             return repositoryCompositeUnit.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return null;
+            return repositoryCompositeUnit.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         }
     }
     public Page<DTOResponseCompositeUnit> retrieve(Pageable pageable, String key, String value) {

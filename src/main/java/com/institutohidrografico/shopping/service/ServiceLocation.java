@@ -35,7 +35,7 @@ public class ServiceLocation implements ServiceInterface<DTOResponseLocation, DT
             Example<Location> example = Example.of(object, exampleMatcher);
             return repositoryLocation.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return null;
+            return repositoryLocation.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         }
     }
     public DTOResponseLocation update(UUID id, DTORequestLocation updated){

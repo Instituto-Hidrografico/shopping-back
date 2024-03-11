@@ -39,7 +39,7 @@ public class ServiceFoodCategory implements ServiceInterface<DTOResponseFoodCate
             Example<FoodCategory> example = Example.of(object, exampleMatcher);
             return repositoryFoodCategory.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return null;
+            return repositoryFoodCategory.findAll(pageable).map(MapStruct.MAPPER::toDTO);
         }
     }
 
