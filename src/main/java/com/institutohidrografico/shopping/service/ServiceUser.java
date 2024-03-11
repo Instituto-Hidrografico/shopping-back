@@ -7,10 +7,7 @@ import com.institutohidrografico.shopping.persistence.payload.response.DTORespon
 import com.institutohidrografico.shopping.persistence.repository.RepositoryRole;
 import com.institutohidrografico.shopping.persistence.repository.RepositoryUser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -46,7 +43,7 @@ public class ServiceUser implements ServiceInterface<DTOResponseUser, DTORequest
             Example<User> example = Example.of(object, exampleMatcher);
             return repositoryUser.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e){
-            return repositoryUser.findAll(pageable).map(MapStruct.MAPPER::toDTO);
+            return repositoryUser.findAll(PageRequest.of(0, 3, Sort.by("username"))).map(MapStruct.MAPPER::toDTO);
         }
     }
     @Override
