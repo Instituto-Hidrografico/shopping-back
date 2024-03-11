@@ -6,9 +6,16 @@ import com.institutohidrografico.shopping.persistence.payload.request.DTORequest
 import com.institutohidrografico.shopping.persistence.payload.response.DTOResponseState;
 import com.institutohidrografico.shopping.persistence.repository.RepositoryState;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.lang.reflect.Method;
+
+import static org.springframework.data.domain.ExampleMatcher.matching;
 
 @Service @RequiredArgsConstructor
 public class ServiceState {
@@ -19,16 +26,15 @@ public class ServiceState {
         return MapStruct.MAPPER.toDTO(repositoryState.save(MapStruct.MAPPER.toObject(created)));
     }
     public Page<DTOResponseState> retrieve(Pageable pageable, String key, String value){
-        switch (key) {
-            case "id": {
-                return repositoryState.findByIdOrderByIdAsc(pageable, Long.parseLong(value)).map(MapStruct.MAPPER::toDTO);
-            }
-            case "name": {
-                return repositoryState.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
-            }
-            default: {
-                return repositoryState.findAll(pageable).map(MapStruct.MAPPER::toDTO);
-            }
+        State object = new State();
+        ExampleMatcher exampleMatcher = matching().withIgnoreNullValues().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        try {
+            Method setMethod = object.getClass().getDeclaredMethod("set" + StringUtils.capitalize(pageable.getSort().stream().findFirst().get().getProperty()), String.class);
+            setMethod.invoke(object, value);
+            Example<State> example = Example.of(object, exampleMatcher);
+            return repositoryState.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
+        } catch (Exception e){
+            return null;
         }
     }
     public DTOResponseState update(long id, DTORequestState updated){

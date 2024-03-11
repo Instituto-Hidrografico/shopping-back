@@ -2,13 +2,21 @@ package com.institutohidrografico.shopping.service;
 
 import com.institutohidrografico.shopping.persistence.MapStruct;
 import com.institutohidrografico.shopping.persistence.model.CompositePK;
+import com.institutohidrografico.shopping.persistence.model.CompositeUnit;
 import com.institutohidrografico.shopping.persistence.payload.request.DTORequestCompositeUnit;
 import com.institutohidrografico.shopping.persistence.payload.response.DTOResponseCompositeUnit;
 import com.institutohidrografico.shopping.persistence.repository.RepositoryCompositeUnit;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.lang.reflect.Method;
+
+import static org.springframework.data.domain.ExampleMatcher.matching;
 
 @Service @RequiredArgsConstructor
 public class ServiceCompositeUnit {
@@ -19,19 +27,15 @@ public class ServiceCompositeUnit {
         return MapStruct.MAPPER.toDTO(repositoryCompositeUnit.save(MapStruct.MAPPER.toObject(created)));
     }
     public Page<DTOResponseCompositeUnit> retrieveComposite(Pageable pageable, String key, String value, String name, int number) {
-        switch (key) {
-            case "name": {
-                return repositoryCompositeUnit.findByNameAndNumberOrderByNameAsc(pageable, name, number).map(MapStruct.MAPPER::toDTO);
-            }
-            case "number": {
-                return repositoryCompositeUnit.findByNumberAndNameOrderByNumberAsc(pageable, name, number).map(MapStruct.MAPPER::toDTO);
-            }
-            case "value": {
-                return repositoryCompositeUnit.findByValueContainingIgnoreCaseOrderByValueAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
-            }
-            default: {
-                return repositoryCompositeUnit.findAll(pageable).map(MapStruct.MAPPER::toDTO);
-            }
+        CompositeUnit object = new CompositeUnit();
+        ExampleMatcher exampleMatcher = matching().withIgnoreNullValues().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        try {
+            Method setMethod = object.getClass().getDeclaredMethod("set" + StringUtils.capitalize(pageable.getSort().stream().findFirst().get().getProperty()), String.class);
+            setMethod.invoke(object, value);
+            Example<CompositeUnit> example = Example.of(object, exampleMatcher);
+            return repositoryCompositeUnit.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
+        } catch (Exception e){
+            return null;
         }
     }
     public Page<DTOResponseCompositeUnit> retrieve(Pageable pageable, String key, String value) {

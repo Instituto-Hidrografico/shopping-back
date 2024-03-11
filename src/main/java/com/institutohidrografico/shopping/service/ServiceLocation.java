@@ -6,11 +6,17 @@ import com.institutohidrografico.shopping.persistence.payload.request.DTORequest
 import com.institutohidrografico.shopping.persistence.payload.response.DTOResponseLocation;
 import com.institutohidrografico.shopping.persistence.repository.RepositoryLocation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.lang.reflect.Method;
 import java.util.UUID;
+
+import static org.springframework.data.domain.ExampleMatcher.matching;
 
 @Service @RequiredArgsConstructor
 public class ServiceLocation implements ServiceInterface<DTOResponseLocation, DTORequestLocation> {
@@ -21,13 +27,15 @@ public class ServiceLocation implements ServiceInterface<DTOResponseLocation, DT
         return MapStruct.MAPPER.toDTO(repositoryLocation.save(MapStruct.MAPPER.toObject(created)));
     }
     public Page<DTOResponseLocation> retrieve(Pageable pageable, String key, String value){
-        switch (key) {
-            case "id": {
-                return repositoryLocation.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
-            }
-            default: {
-                return repositoryLocation.findAll(pageable).map(MapStruct.MAPPER::toDTO);
-            }
+        Location object = new Location();
+        ExampleMatcher exampleMatcher = matching().withIgnoreNullValues().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        try {
+            Method setMethod = object.getClass().getDeclaredMethod("set" + StringUtils.capitalize(pageable.getSort().stream().findFirst().get().getProperty()), String.class);
+            setMethod.invoke(object, value);
+            Example<Location> example = Example.of(object, exampleMatcher);
+            return repositoryLocation.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
+        } catch (Exception e){
+            return null;
         }
     }
     public DTOResponseLocation update(UUID id, DTORequestLocation updated){

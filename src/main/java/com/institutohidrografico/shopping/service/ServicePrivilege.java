@@ -1,15 +1,22 @@
 package com.institutohidrografico.shopping.service;
 
 import com.institutohidrografico.shopping.persistence.MapStruct;
+import com.institutohidrografico.shopping.persistence.model.Privilege;
 import com.institutohidrografico.shopping.persistence.payload.request.DTORequestPrivilege;
 import com.institutohidrografico.shopping.persistence.payload.response.DTOResponsePrivilege;
 import com.institutohidrografico.shopping.persistence.repository.RepositoryPrivilege;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.lang.reflect.Method;
 import java.util.UUID;
+
+import static org.springframework.data.domain.ExampleMatcher.matching;
 
 @Service @RequiredArgsConstructor
 public class ServicePrivilege implements ServiceInterface<DTOResponsePrivilege, DTORequestPrivilege> {
@@ -22,16 +29,15 @@ public class ServicePrivilege implements ServiceInterface<DTOResponsePrivilege, 
     }
     @Override
     public Page<DTOResponsePrivilege> retrieve(Pageable pageable, String key, String value){
-        switch (key) {
-            case "id": {
-                return repositoryPrivilege.findByIdOrderByIdAsc(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
-            }
-            case "name": {
-                return repositoryPrivilege.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
-            }
-            default: {
-                return repositoryPrivilege.findAll(pageable).map(MapStruct.MAPPER::toDTO);
-            }
+        Privilege object = new Privilege();
+        ExampleMatcher exampleMatcher = matching().withIgnoreNullValues().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        try {
+            Method setMethod = object.getClass().getDeclaredMethod("set" + StringUtils.capitalize(pageable.getSort().stream().findFirst().get().getProperty()), String.class);
+            setMethod.invoke(object, value);
+            Example<Privilege> example = Example.of(object, exampleMatcher);
+            return repositoryPrivilege.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
+        } catch (Exception e){
+            return null;
         }
     }
     @Override

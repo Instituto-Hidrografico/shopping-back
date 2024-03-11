@@ -8,6 +8,9 @@ import com.institutohidrografico.shopping.persistence.repository.RepositoryCity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.lang.reflect.Method;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.endsWith;
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.startsWith;
@@ -22,18 +25,15 @@ public class ServiceCity {
         return MapStruct.MAPPER.toDTO(repositoryCity.save(MapStruct.MAPPER.toObject(created)));
     }
     public Page<DTOResponseCity> retrieve(Pageable pageable, String value){
-        String value2 = (pageable.getSort().stream().findFirst().get() == null ? "id" : pageable.getSort().stream().findFirst().get().getProperty());
-        switch (value2) {
-            case "id" -> {
-                return repositoryCity.findByIdOrderByIdAsc(pageable, Long.parseLong(value)).map(MapStruct.MAPPER::toDTO);
-            }
-            case "name" -> {
-                return repositoryCity.findByNameContainingIgnoreCaseOrderByNameAsc(pageable, value).map(MapStruct.MAPPER::toDTO);
-            }
-            default -> {
-//                return repositoryCity.findAll(pageable).map(MapStruct.MAPPER::toDTO);
-                return repositoryCity.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort())).map(MapStruct.MAPPER::toDTO);
-            }
+        City object = new City();
+        ExampleMatcher exampleMatcher = matching().withIgnoreNullValues().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        try {
+            Method setMethod = object.getClass().getDeclaredMethod("set" + StringUtils.capitalize(pageable.getSort().stream().findFirst().get().getProperty()), String.class);
+            setMethod.invoke(object, value);
+            Example<City> example = Example.of(object, exampleMatcher);
+            return repositoryCity.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
+        } catch (Exception e){
+            return null;
         }
     }
     public DTOResponseCity update(long id, DTORequestCity updated){
