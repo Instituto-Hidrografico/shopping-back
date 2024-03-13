@@ -119,6 +119,8 @@ These are the paths to services:
 ## Developers
 > [Gadelha TI](https://github.com/gadelhati)
 > [Lucas](https://github.com/lucassmartins)
+> [Augusto](https://github.com/augustmat)
+> [Diego](https://github.com/diegoferreirapinto)
 
 ## Licence
 > [MIT License](https://choosealicense.com/licenses/mit/)
