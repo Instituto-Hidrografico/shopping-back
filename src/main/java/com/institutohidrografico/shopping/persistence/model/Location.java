@@ -9,9 +9,12 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 import org.locationtech.jts.geom.*;
 
+import java.time.LocalDateTime;
+
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = true)
 public class Location extends GenericEntity {
 
+    private LocalDateTime localDateTime;
     @Column(columnDefinition = "geography")
     private Point point;
     @Column(columnDefinition = "geography")
