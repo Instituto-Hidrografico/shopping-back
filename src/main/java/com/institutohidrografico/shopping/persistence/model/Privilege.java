@@ -1,5 +1,6 @@
 package com.institutohidrografico.shopping.persistence.model;
 
+import com.institutohidrografico.shopping.persistence.GenericAuditEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -13,7 +14,7 @@ import org.hibernate.envers.Audited;
 import java.util.Collection;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"})) @EqualsAndHashCode(callSuper = true)
-public class Privilege extends GenericEntity {
+public class Privilege extends GenericAuditEntity {
 
     private String name;
 

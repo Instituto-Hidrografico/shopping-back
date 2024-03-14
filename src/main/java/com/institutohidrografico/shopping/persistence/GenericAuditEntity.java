@@ -1,5 +1,6 @@
-package com.institutohidrografico.shopping.persistence.model;
+package com.institutohidrografico.shopping.persistence;
 
+import com.institutohidrografico.shopping.persistence.model.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data @MappedSuperclass @EntityListeners(AuditingEntityListener.class)
-public abstract class GenericEntity implements Serializable {
+public abstract class GenericAuditEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

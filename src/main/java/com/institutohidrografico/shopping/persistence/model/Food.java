@@ -1,5 +1,6 @@
 package com.institutohidrografico.shopping.persistence.model;
 
+import com.institutohidrografico.shopping.persistence.GenericAuditEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +11,7 @@ import org.hibernate.envers.Audited;
 import java.math.BigDecimal;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"ibgeCode", "name"})) @EqualsAndHashCode(callSuper = false)
-public class Food extends GenericEntity {
+public class Food extends GenericAuditEntity {
 
     private String ibgeCode;
     private String name;

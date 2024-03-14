@@ -1,5 +1,6 @@
 package com.institutohidrografico.shopping.persistence.model;
 
+import com.institutohidrografico.shopping.persistence.GenericAuditEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"})) @EqualsAndHashCode(callSuper = false)
-public class FoodCategory extends GenericEntity {
+public class FoodCategory extends GenericAuditEntity {
 
     private String name;
 }

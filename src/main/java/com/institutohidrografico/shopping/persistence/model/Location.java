@@ -1,5 +1,6 @@
 package com.institutohidrografico.shopping.persistence.model;
 
+import com.institutohidrografico.shopping.persistence.GenericAuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,7 +13,7 @@ import org.locationtech.jts.geom.*;
 import java.time.LocalDateTime;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = true)
-public class Location extends GenericEntity {
+public class Location extends GenericAuditEntity {
 
     private LocalDateTime localDateTime;
     @Column(columnDefinition = "geography")

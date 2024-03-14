@@ -1,5 +1,6 @@
 package com.institutohidrografico.shopping.persistence.model;
 
+import com.institutohidrografico.shopping.persistence.GenericAuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -11,7 +12,7 @@ import org.hibernate.envers.Audited;
 import java.util.Collection;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"})) @EqualsAndHashCode(callSuper = true)
-public class Role extends GenericEntity {
+public class Role extends GenericAuditEntity {
 
     private String name;
 
