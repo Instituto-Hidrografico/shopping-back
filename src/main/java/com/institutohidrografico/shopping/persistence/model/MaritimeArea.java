@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
+import org.locationtech.jts.geom.MultiPolygon;
 import org.locationtech.jts.geom.Polygon;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
@@ -19,4 +20,6 @@ public class MaritimeArea extends GenericAuditEntity {
     private String finish;
     @Column(columnDefinition = "geography")
     private Polygon polygon;
+    @Column(columnDefinition = "geography")
+    private MultiPolygon multiPolygon;
 }
