@@ -17,4 +17,5 @@ public class TideGaugeStation extends GenericAuditEntity {
     private String title;
     @Column(columnDefinition = "geography")
     private Point point;
+    private String state;
 }
